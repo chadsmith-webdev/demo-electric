@@ -1,4 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
 @import "tailwindcss";
+
+@theme {
+  /* Brand Colors - Deep charcoal with electric amber */
+  --color-surface-base: oklch(14% 0.01 60); /* near-black, warm tint */
+  --color-surface-raised: oklch(18% 0.012 60); /* card/panel bg */
+  --color-surface-overlay: oklch(22% 0.014 60); /* higher elevation */
+  --color-surface-border: oklch(28% 0.015 60); /* subtle border */
+
+  --color-amber: oklch(75% 0.18 65); /* electric amber primary */
+  --color-amber-dim: oklch(65% 0.15 65); /* muted amber */
+  --color-amber-glow: oklch(82% 0.19 65); /* bright hover state */
+
+  --color-text-primary: oklch(95% 0.008 60); /* warm off-white */
+  --color-text-secondary: oklch(72% 0.012 60); /* medium gray */
+  --color-text-muted: oklch(52% 0.01 60); /* muted */
+
+  --color-trust-blue: oklch(62% 0.12 240); /* trust/badge color */
+  --color-success: oklch(68% 0.15 145);
+
+  /* Typography */
+  --font-display: "Barlow Condensed", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  /* Spacing / Sizing */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
+
+/* Base reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* Display typography */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Amber accent utility */
+.text-amber {
+  color: var(--color-amber);
+}
+.bg-amber {
+  background-color: var(--color-amber);
+}
+.border-amber {
+  border-color: var(--color-amber);
+}
+
+/* Section containers */
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* Trust badge subtle glow */
+.trust-badge {
+  background: color-mix(
+    in oklch,
+    var(--color-trust-blue) 15%,
+    var(--color-surface-raised)
+  );
+  border: 1px solid
+    color-mix(in oklch, var(--color-trust-blue) 40%, transparent);
+  color: oklch(80% 0.1 240);
+}
+
+/* Amber CTA button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-amber);
+  color: oklch(14% 0.01 60);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-amber-glow);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Ghost button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-amber);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-amber);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.btn-ghost:hover {
+  background-color: var(--color-amber);
+  color: oklch(14% 0.01 60);
+}
+
+/* Divider line */
+.amber-divider {
+  width: 64px;
+  height: 4px;
+  background: var(--color-amber);
+  border-radius: 2px;
+}
+
+/* Card surface */
+.card {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 
 :root {
   --background: #ffffff;
